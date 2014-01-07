@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+@import "lib/bootstrap/less/bootstrap.less";
+
+@col_main : #00ff70;
+@col_back : #e2ffe3;
+@col_back_pane: #00E65C;
+@col_back_2 : #D8FFD5;
+
+@col_back_hov: #00e65c;
+
+@col_qtype_n : green;
+@col_qtype_u : blue;
+@col_qtype_q : purple;
+@col_qtype_r : orange;
+
+
+
+body {
+    //    font-family:  "Lucida Grande", "segoe UI", "ƒqƒ‰ƒMƒmŠpƒS ProN W3", "Hiragino Kaku Gothic ProN", Meiryo, Verdana, Arial, sans-serif;
+    //    background: @col_back;
+    min-height: 1000px;
+}
+
+tr.success>td>a {
+    color: white;
+}
+
+.table-nonfluid {
+    width: auto;
+}
+
+.bs-docs-section {
+    margin-top: 6em;
+}
+
+.table > tbody > tr > td.td-btn-fav {
+    padding: 0px;
+    >button {
+        width: 100%;
+    }
+}
+
+.word-tr {
+    overflow: hidden;
+    white-space: nowrap;
+    >td {
+        padding: 2px 8px !important;
+    }
+    .word {
+    }
+}
+
+tr {
+    .index,.point,.type {
+        .num-box();
+    }
+    .fav {
+        width: 5em;
+    }
+}
+
+
+.comment-head {
+    >td {
+        padding: 2px 8px !important;
+    }
+    overflow: hidden;
+    white-space: nowrap;
+    .type {
+        width: 7%;
+    }
+    .user-name {
+        width: 40%;
+    }
+    .time {
+        width: 30%;
+    }
+}
+
+.num-box() {
+    text-align: center;
+    width: 3em;
+}
+
+
+.btn.btn-fav {
+    padding: 0px;
+    width: 100%;
+}
+
+#hidden-div {
+    display: none;
+}
+
+button[id^=c-button] {
+    width: 25%;
+}
+.btn-group-fit {
+    width: 100%;
+}
+
+
+.word-key {
+    font-weight: bold;
+}
+
+

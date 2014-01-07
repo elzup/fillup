@@ -7,12 +7,16 @@ getAccessToken();
 
 if(isset($_GET['pre'])) echo "<pre>";
 
+$d = $_GET['ymd'];
 
-
+if (empty($d)) $d = date('Ymd', strtotime('-1day'));
+else
+    $d = date('Y-m-d', strtotime($d));
 $err = array();
 $par = array();
 
-$lecture_list = new LectureList();
+
+$lecture_list = new LectureList($d);
 
 //print_r($lecture_list);
 
@@ -26,6 +30,7 @@ if(isset($_GET['d'])) {
 if(isset($_GET['pre'])) echo "</pre></pre></pre></pre>";
 
 ?>
+
 
 
 <?php htmlHeader("top");?>
@@ -71,31 +76,11 @@ EOF;
       <div class="row">
         <div class="col-lg-12">
           <div class="page-header">
-            <h1 id="type">JNote -ジェンガノート-</h1>
+            <h2 class="type-blockquotes">過去のノート</h2>
           </div>
         </div>
       </div>
       <!-- TitleHead -->
-      <div class="row">
-        <div class="col-lg-8">
-          <h2 class="type-blockquotes">ジェンガノートとは</h2>
-          <blockquote>
-            <p>
-              同じ講義を受けている学生同士で情報共有が出来るオンライン掲示板です<br /> キーワード・単語や授業のポイントの相互分析・整理が出来ます<br /> 掲示板を使用により、講義に対する疑問点の解決や共有をすることが出来ます<br /> 補足知識をしあう、補足資料(WebページURL)の共有することも可能
-            </p>
-            <small><cite title="Source Title"></cite> </small>
-          </blockquote>
-        </div>
-        <div class="col-lg-4">
-          <h2 class="type-blockquotes">使い方</h2>
-          <blockquote>
-            <p>
-              Twitter連携によってアカウント管理をしているため<br /> 個人のアカウントでのログインが必要となります<br /> (閲覧のみであればログイン不必要)<br />
-            </p>
-            <small><cite title="Source Title"></cite> </small>
-          </blockquote>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -121,11 +106,12 @@ EOF;
           </div>
         </div>
 
+
         <?php $lecture_list->printListDivs();?>
 
       </div>
     </div>
-  </div>
 
+  </div>
 </body>
 </html>

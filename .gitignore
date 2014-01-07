@@ -16,6 +16,13 @@ local.properties
 .settings/
 .loadpath
 
+lib/
+dust/
+oauth/
+config.php
+getUnipa.php
+test*
+
 # External tool builders
 .externalToolBuilders/
 
