@@ -9,9 +9,15 @@ if(isset($_GET['pre'])) echo "<pre>";
 
 $d = $_GET['ymd'];
 
-if (empty($d)) $d = date('Ymd', strtotime('-1day'));
+if (empty($d))
+	$d = date('Ymd', strtotime('-1day'));
 else
-    $d = date('Y-m-d', strtotime($d));
+	$d = date('Y-m-d', strtotime($d));
+
+$date_y = date('Y', strtotime($d));
+$date_m = date('m', strtotime($d));
+$date_d = date('d', strtotime($d));
+
 $err = array();
 $par = array();
 
@@ -22,12 +28,12 @@ $lecture_list = new LectureList($d);
 
 
 if(isset($_GET['d'])) {
-    $lecture_list->addDebugPage();
+	$lecture_list->addDebugPage();
 }
 // $lecture_list->addTempPage();
 
 
-if(isset($_GET['pre'])) echo "</pre></pre></pre></pre>";
+if (isset($_GET['pre'])) echo "</pre></pre></pre></pre>";
 
 ?>
 
@@ -40,20 +46,34 @@ if(isset($_GET['pre'])) echo "</pre></pre></pre></pre>";
       <div class="navbar-header">
         <a href="./" class="navbar-brand">JNote-TDU</a>
         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-          <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
         </button>
       </div>
+
       <div class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav">
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="other">その他<span class="caret"></span>
-          </a>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="other">
+              その他
+              <span class="caret"></span>
+            </a>
             <ul class="dropdown-menu" aria-labelledby="cource">
-              <li><a tabindex="-1" href="./bb?id=10000">報告・提案</a></li>
-              <li><a tabindex="-1" href="./bb?id=10001">更新ログ</a></li>
-              <li><a tabindex="-1" href="http://twitter.com/arzzup" target="_blank">作者Twitter</a></li>
+              <li>
+                <a tabindex="-1" href="./bb?id=10000">報告・提案</a>
+              </li>
+              <li>
+                <a tabindex="-1" href="./bb?id=10001">更新ログ</a>
+              </li>
+              <li>
+                <a tabindex="-1" href="http://twitter.com/arzzup" target="_blank">作者Twitter</a>
+              </li>
             </ul>
           </li>
-          <li><a href="./prev">過去のノート</a></li>
+          <li>
+            <a href="./prev">過去のノート</a>
+          </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -64,12 +84,13 @@ if(isset($_GET['pre'])) echo "</pre></pre></pre></pre>";
                 <li><a href="./logout.php">ログアウト</a></li>
 EOF;
 } else
-    echo $e = '<li><a href="oauth/oauth_start">Twitterログイン</a></li>';
+	echo $e = '<li><a href="oauth/oauth_start">Twitterログイン</a></li>';
 ?>
         </ul>
       </div>
     </div>
   </div>
+
 
   <div class="container">
     <div class="bs-docs-section">
@@ -85,6 +106,13 @@ EOF;
   </div>
 
   <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="well">
+        <?php htmlDateJumpForm($date_y, $date_m, $date_d)?>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-lg-12">
         <div id="sw-time-table">

@@ -92,7 +92,6 @@ function htmlHeader($title){
 <title>$title - </title>
 
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.0.0/build/cssreset/reset-min.css" />
-
 <link rel="stylesheet" charset="UTF-8" href="./lib/bootstrap/css/bootstrap.min.css" media="screen" />
 <link rel="stylesheet/less" type="text/css" charset="UTF-8" href="style.less" media="screen" />
 <script src="lib/less-1.3.3.min.js" type="text/javascript"></script>
@@ -123,6 +122,54 @@ function toStrTime($n) {
     $lib = explode(" ", "０ １ ２ ３ ４ ５ ６ ７");
     //    $lib = explode(" ", "零 一 ニ 三 四 五 六 七");
     return $lib[$n]."限";
+}
+
+function htmlDateJumpForm($y, $m, $d) {
+	$ymd = $y.$m.$d;
+	$ymd_p = date('Ymd', strtotime('+1day', $ymd));
+	$ymd_n = date('Ymd', strtotime('-1day', $ymd));
+
+	echo $e =<<<EOF
+          <form action="" class="form-horizontal" method="GET">
+            <fieldset>
+              <div class="form-group">
+				<button id="btn-move-p" class="btn col-lg-1" ><a class="a-block" href="./prev?ymd={$ymd_p}">Prev</a></button>
+	            <label for="select" class="col-lg-2 control-label">日付け</label>
+                <div class="col-lg-2">
+                  <select name="" id="date-y" class="form-control">
+EOF;
+	for ($i = 2013; $i <= 2014; $i++)
+		echo '<option value="'.$i.'"'.(($i == $y) ? " selected" : "").'>'.$i.'</option>';
+	echo $e =<<<EOF
+                  </select>
+				</div>
+	            <label for="select" class="col-lg-1 control-label">年</label>
+                <div class="col-lg-1">
+                  <select name="" id="date-m" class="form-control">
+EOF;
+	for ($i = 1; $i <= 12; $i++)
+		echo '<option value="'.$i.'"'.(($i == $m) ? " selected" : "").'>'.$i.'</option>';
+	echo $e =<<<EOF
+                  </select>
+                </div>
+	            <label for="select" class="col-lg-1 control-label">月</label>
+                <div class="col-lg-1">
+                  <select name="d" id="date-m" class="form-control">
+EOF;
+	for ($i = 1; $i <= 31; $i++)
+		echo '<option value="'.$i.'"'.(($i == $d) ? " selected" : "").'>'.$i.'</option>';
+	echo $e =<<<EOF
+                  </select>
+                </div>
+	            <label for="select" class="col-lg-1 control-label">日</label>
+				<button id="btn-move" class="btn btn-primary col-lg-1" type="submit">移動</button>
+				<button id="btn-move-p" class="btn col-lg-1" ><a class="a-block" href="./prev?ymd={$ymd_p}">Next</a></button>
+              </div>
+            </fieldset>
+          </form>
+
+
+EOF;
 }
 
 /* --------------------------------------------------------- *
@@ -245,5 +292,13 @@ function keywordChangeBold($text) {
     $text= preg_replace($pattern,$replacement,$text);
     return $text;
 }
+
+function tripText($text) {
+    $pattern = '/{([^}]*)}/u';
+    $replacement = '<span title="\1" class="word-trip">\1</span>';
+    $text= preg_replace($pattern,$replacement,$text);
+    return $text;
+}
+
 ?>
 

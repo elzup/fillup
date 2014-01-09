@@ -148,7 +148,7 @@ EOF;
                   <th>user-id</th>
                   <th>time</th>
                   <th>point</th>
-                  <th>bu</th>
+                  <th>★</th>
                 </tr>
               </thead>
               <tbody>
@@ -185,23 +185,26 @@ EOF;
                 <input type="hidden" name="id_lecture" value="<?=$lecture->getId_lecture()?>" />
                 <input type="hidden" name="token" value="<?=$token?>" />
                 <div class="form-group">
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <div class="btn-group btn-group-fit" data-toggle="buttons-radio">
                       <button type="button" id="c-button-n" class="btn btn-default">ノーマル</button>
                       <button type="button" id="c-button-q" class="btn btn-default">質問</button>
                       <button type="button" id="c-button-r" class="btn btn-default">返答</button>
                       <button type="button" id="c-button-u" class="btn btn-default">URL</button>
+                      <button type="button" id="c-button-e" class="btn btn-default">問題</button>
                     </div>
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-lg-4">
                     <button type="submit" class="btn btn-block btn-primary">送信</button>
                   </div>
+                </div>
+                <div id="type-description-div">
+
                 </div>
                 <div class="checkbox" style="float: right;">
                   <label> <input type="checkbox" name="tweet" <?=(isset($_COOKIE['with_tweet']) ? "checked" :"")?>> 同時にツイートする
                   </label>
                 </div>
-
               </fieldset>
             </form>
           </div>

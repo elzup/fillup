@@ -83,7 +83,7 @@ else {
                  }
              }
             if ($par['text'] == '') $err = 'nt';
-            if (!in_array($par['type'], explode(' ', 'n u q r'))) $err = 'nt';
+            if (!in_array($par['type'], explode(' ', 'n u q r e'))) $err = 'nt';
             if (isset($err)) jump('bb', array('id' => $par['id_lecture'], 'err' => $err));
             $par['point'] = '0';
             //            $par['timestamp'] = 'NOW()';
